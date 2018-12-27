@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_dialog_layout_design_user_input"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_back"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Change SAM Password"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/et_old_pass"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edit_text_back"
+        android:hint="Enter old password"
+        android:inputType="numberPassword"
+        android:maxLength="4"
+        android:paddingStart="8dp" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/et_new_pass"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edit_text_back"
+        android:hint="Enter new password"
+        android:inputType="numberPassword"
+        android:maxLength="4"
+        android:paddingStart="8dp" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/et_conf_pass"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edit_text_back"
+        android:hint="Confirm new password"
+        android:inputType="numberPassword"
+        android:maxLength="4"
+        android:paddingStart="8dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_save"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:textColor="@color/black_shade"
+            android:textSize="13sp" />
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="80dp"
+            android:gravity="center"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/black_shade"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
