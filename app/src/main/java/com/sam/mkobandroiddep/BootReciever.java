@@ -34,7 +34,7 @@ public class BootReciever extends  BroadcastReceiver {
                 context.startActivity(activityIntent);
 
             }else {
-                Toast.makeText(context, "SAM Deactivate", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "SAM Deactivate", Toast.LENGTH_SHORT).show();
             }
 
         }
