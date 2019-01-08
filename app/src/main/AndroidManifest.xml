@@ -23,21 +23,20 @@
         <activity
             android:name="com.sam.mkobandroiddep.activity.MainActivity"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
         <activity
             android:name="com.sam.mkobandroiddep.activity.Main2Activity"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
 
         <receiver
             android:name="com.sam.mkobandroiddep.BootReciever"
@@ -82,18 +81,30 @@
 
         <activity
             android:name="com.sam.mkobandroiddep.activity.SamSettingActivity"
-            android:screenOrientation="portrait"
+            android:launchMode="singleInstance"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:windowSoftInputMode="adjustPan"
-            android:launchMode="singleInstance"/>
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
-        <activity android:name="com.sam.mkobandroiddep.activity.SamInitialActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait"
+        <activity
+            android:name="com.sam.mkobandroiddep.activity.SamInitialActivity"
+            android:launchMode="singleInstance"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:launchMode="singleInstance">
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
-    </application>
 
+        <receiver android:name="com.sam.mkobandroiddep.SystemDialogReceiver">
+            <intent-filter>
+                <action android:name="android.intent.
+                 action.CLOSE_SYSTEM_DIALOGS" />
+            </intent-filter>
+        </receiver>
+
+    </application>
 </manifest>

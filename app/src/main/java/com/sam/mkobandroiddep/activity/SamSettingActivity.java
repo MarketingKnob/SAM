@@ -248,4 +248,9 @@ public class SamSettingActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: ");
+    }
 }

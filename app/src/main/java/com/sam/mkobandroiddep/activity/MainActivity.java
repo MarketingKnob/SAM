@@ -90,7 +90,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 try {
 //                    stopLockTask();
-                    startActivity(new Intent(MainActivity.this,SamSettingActivity.class));
+                    Intent intent= new Intent(MainActivity.this,SamSettingActivity.class);
+                    intent.addCategory(Intent.CATEGORY_HOME);
+                    startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -232,6 +234,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     stopLockTask();
                     intent = new Intent(MainActivity.this,SamSettingActivity.class);
+                    intent.addCategory(Intent.CATEGORY_HOME);
                     startActivity(intent);
                     finish();
                 } catch (Exception e) {
