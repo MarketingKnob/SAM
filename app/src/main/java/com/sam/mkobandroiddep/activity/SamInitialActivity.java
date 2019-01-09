@@ -55,19 +55,19 @@ public class SamInitialActivity extends AppCompatActivity {
                     tvTimer.setText("SAM is initializing for : " + millisUntilFinished / 1000+" Seconds");
                 }
 
-
             }
+
             public void onFinish() {
 
-                prefs                           = getApplicationContext().getSharedPreferences("SAMPref", MODE_PRIVATE);
-                strSelectAppPackage             = prefs.getString("SelectAppPackage", "");
-                boolean saMactive               = prefs.getBoolean("SAMactive", false);
+                prefs = getApplicationContext().getSharedPreferences("SAMPref", MODE_PRIVATE);
+                strSelectAppPackage = prefs.getString("SelectAppPackage", "");
+                boolean saMactive = prefs.getBoolean("SAMactive", false);
 
-                Log.d(TAG, "onClick:Active "+strSelectAppPackage+"SamActive "+saMactive);
+                Log.d(TAG, "onClick:Active " + strSelectAppPackage + "SamActive " + saMactive);
 
                 if (saMactive) {
                     Intent intent = getPackageManager().getLaunchIntentForPackage(strSelectAppPackage);
-                    if(intent != null){
+                    if (intent != null) {
                         SharedPreferences.Editor editor1 = getSharedPreferences("SAMPref", MODE_PRIVATE).edit();
                         editor1.putBoolean("SamStart", true);
                         editor1.apply();
@@ -79,15 +79,14 @@ public class SamInitialActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                    }else {
-                        Toast.makeText(SamInitialActivity.this, " Launch Error.",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(SamInitialActivity.this, " Launch Error.", Toast.LENGTH_SHORT).show();
                     }
-                }
-                else{
+                } else {
                     try {
 //                        stopLockTask();
                         finish();
-                        Intent intent = new Intent(SamInitialActivity.this,SamSettingActivity.class);
+                        Intent intent = new Intent(SamInitialActivity.this, SamSettingActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
 
