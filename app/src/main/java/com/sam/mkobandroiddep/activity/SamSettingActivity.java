@@ -3,9 +3,13 @@ package com.sam.mkobandroiddep.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -68,49 +72,67 @@ public class SamSettingActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
-        if (v==tvSelectSam){
-            startActivity(new Intent(SamSettingActivity.this,Main2Activity.class));
+        if (v == tvSelectSam) {
+            startActivity(new Intent(SamSettingActivity.this, Main2Activity.class));
 //            stopLockTask();
-        }else if (v==tvChangePin){
+        } else if (v == tvChangePin) {
             showChangePassDialog();
-        }else if (v==tvActivateSam){
+        } else if (v == tvActivateSam) {
 
-            if (strSelectedApp.equalsIgnoreCase("No app is selected")){
+            if (strSelectedApp.equalsIgnoreCase("No app is selected")) {
                 Toast.makeText(this, "No App Selected", Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
 //                startLockTask();
                 SharedPreferences.Editor editor = getSharedPreferences("SAMPref", MODE_PRIVATE).edit();
                 editor.putBoolean("SAMactive", true);
                 editor.apply();
-                strSelectAppPackage            = prefs.getString("SelectAppPackage", "");
-                boolean s                       = prefs.getBoolean("SAMactive", false);
+                strSelectAppPackage = prefs.getString("SelectAppPackage", "");
+                boolean s = prefs.getBoolean("SAMactive", false);
 
-                Log.d(TAG, "onClick:Active "+strSelectAppPackage+"SamActive "+s);
+                Log.d(TAG, "onClick:Active " + strSelectAppPackage + "SamActive " + s);
                 Intent intent = getPackageManager().getLaunchIntentForPackage(strSelectAppPackage);
-                if(intent != null){
+                if (intent != null) {
 
                     SharedPreferences.Editor editor1 = getSharedPreferences("SAMPref", MODE_PRIVATE).edit();
                     editor1.putBoolean("SamStart", true);
                     editor1.apply();
 
                     startActivity(intent);
-                    Toast.makeText(this, strSelectedApp+" is Activate", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, strSelectedApp + " is Activate", Toast.LENGTH_SHORT).show();
 
-                }else {
-                    Toast.makeText(SamSettingActivity.this, " Launch Error.",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SamSettingActivity.this, " Launch Error.", Toast.LENGTH_SHORT).show();
                 }
             }
 
 
         } else if (v == tvExit) {
+
+
+            getPackageManager().clearPackagePreferredActivities(getPackageName());
+
             SharedPreferences.Editor editor1 = getSharedPreferences("SAMPref", MODE_PRIVATE).edit();
             editor1.putBoolean("SAMactive", false);
             editor1.putBoolean("SamStart", false);
             editor1.putBoolean("SAMPassVerify", false);
             editor1.apply();
             SamSettingActivity.this.finish();
+
         }
     }
+
+//    public static void resetPreferredLauncherAndOpenChooser(Context context) {
+//        PackageManager packageManager = context.getPackageManager();
+//        ComponentName componentName = new ComponentName(context, SamSettingActivity.class);
+//        packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+//
+//        Intent selector = new Intent(Intent.ACTION_MAIN);
+//        selector.addCategory(Intent.CATEGORY_HOME);
+//        selector.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(selector);
+//
+//        packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, PackageManager.DONT_KILL_APP);
+//    }
 
     /*Dialog for Change Password*/
     public void showChangePassDialog() {
